@@ -1,8 +1,9 @@
 const inquirer = require("inquirer");
 const filesystem = require("./node_modules/graceful-fs/graceful-fs");
 const fs = require("fs");
+const { Circle, Triangle, Square } = require("./lib/shapes");
 
-// questions array for user input - defines shape color, text, text color & img
+// define questions array for user input via inquirer - defines shape color, text, text color & img
 const questions = [
   {
     type: "confirm",
