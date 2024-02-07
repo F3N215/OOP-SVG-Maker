@@ -1,7 +1,8 @@
 const inquirer = require("inquirer");
+const filesystem = require("./node_modules/graceful-fs/graceful-fs");
 const fs = require("fs");
 
-// questions array for user input
+// questions array for user input - defines shape color, text, text color & img
 const questions = [
   {
     type: "confirm",
@@ -30,3 +31,16 @@ const questions = [
     choices: ["Circle", "Square", "Triangle"],
   },
 ];
+
+// write data to file
+function writeToFile(fileName, data) {
+  console.log("Writing [" + data + "] to file [" + fileName + "]");
+  filesystem.writeFile(fileName, data, function (err) {
+    if (err) {
+      return console.log(err);
+    }
+    console.log("Wow you did it! You generated logo.svg! Looks beautiful!");
+  });
+}
+
+init();
