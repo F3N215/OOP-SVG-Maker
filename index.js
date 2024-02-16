@@ -61,4 +61,30 @@ function writeToFile(fileName, data) {
   });
 }
 
+async function init() {
+  console.log("Beginning initialization");
+  var svgString = "";
+  var fileName = "logo.svg";
+
+  const answers = await inquirer.prompt(questions); // prompt user for answers
+
+  var user_text = "";
+  if (answers.text.length > 0 && answers.text.length < 4) {
+    user_text = answers.text;
+  } else {
+    console.log("Wrong text! Enter 1-3 characters, no more or less");
+    return;
+  }
+  console.log("User input text: [" + user_text + "]");
+
+  user_font_color = answers["text-color"];
+  console.log("User font color: [" + user_font_color + "]");
+
+  user_shape_color = answers.shape;
+  console.log("Shape color: [" + user_shape_color + "]");
+
+  user_shape_type = answers["pixel-image"];
+  console.log("User entered shape = [" + user_shape_type + "]");
+}
+
 init();
