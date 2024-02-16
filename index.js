@@ -85,6 +85,23 @@ async function init() {
 
   user_shape_type = answers["pixel-image"];
   console.log("User entered shape = [" + user_shape_type + "]");
-}
+
+  let user_shape;
+  if (user_shape_type === "Circle" || user_shape_type === "circle"){
+      user_shape = new Circle();
+      console.log("You picked the Circle shape");
+  }
+  else if (user_shape_type === "Triangle" || user_shape_type === "triangle"){
+    user_shape = new Triangle();
+    console.log("You picked the Triangle shape");
+  }
+  else if (user_shape_type === "Square" || user_shape_type === "square"){
+    user_shape = new Triangle();
+    console.log("You picked the Square shape");
+  }
+  else {
+    console.log("That's not a shape!");
+  }
+  user_shape.setColor(user_shape_color);
 
 init();
