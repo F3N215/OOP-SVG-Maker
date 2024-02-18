@@ -7,7 +7,9 @@
     "example": "examples",
     "lib": "lib"
   },
+  "type": "module",
   "scripts": {
+    "start": "node index.js",
     "test": "jest"
   },
   "keywords": [],

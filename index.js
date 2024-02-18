@@ -1,8 +1,10 @@
 // import inquirer, graceful and shape modules
-const inquirer = require("inquirer");
-const filesystem = require("./node_modules/graceful-fs/graceful-fs");
+// const inquirer = require("inquirer");
+// const filesystem = require("graceful-fs");
+import { writeFile } from "graceful-fs";
+import inquirer from "inquirer";
 const fs = require("fs");
-const { Circle, Triangle, Square } = require("./lib/shapes");
+const { Circle, Triangle, Square } = await import("./lib/shapes");
 
 class Svg {
   constructor() {
@@ -53,7 +55,7 @@ const questions = [
 // write data to file
 function writeToFile(fileName, data) {
   console.log("Writing [" + data + "] to file [" + fileName + "]");
-  filesystem.writeFile(fileName, data, function (err) {
+  writeFile(fileName, data, function (err) {
     if (err) {
       return console.log(err);
     }
