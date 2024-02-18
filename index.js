@@ -104,4 +104,5 @@ async function init() {
   }
   user_shape.setColor(user_shape_color);
 
+  // need function to add new shape and text to the shape
 init();
