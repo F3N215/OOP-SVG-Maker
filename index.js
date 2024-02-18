@@ -68,41 +68,44 @@ async function init() {
 
   const answers = await inquirer.prompt(questions); // prompt user for answers
 
-  var user_text = "";
-  if (answers.text.length > 0 && answers.text.length < 4) {
-    user_text = answers.text;
-  } else {
-    console.log("Wrong text! Enter 1-3 characters, no more or less");
-    return;
-  }
-  console.log("User input text: [" + user_text + "]");
+    var user_text = "";
+    if (answers.text.length > 0 && answers.text.length < 4) {
+      user_text = answers.text;
+    } else {
+      console.log("Wrong text! Enter 1-3 characters, no more or less");
+      return;
+    }
+    console.log("User input text: [" + user_text + "]");
 
-  user_font_color = answers["text-color"];
-  console.log("User font color: [" + user_font_color + "]");
+    user_font_color = answers["text-color"];
+    console.log("User font color: [" + user_font_color + "]");
 
-  user_shape_color = answers.shape;
-  console.log("Shape color: [" + user_shape_color + "]");
+    user_shape_color = answers.shape;
+    console.log("Shape color: [" + user_shape_color + "]");
 
-  user_shape_type = answers["pixel-image"];
-  console.log("User entered shape = [" + user_shape_type + "]");
+    user_shape_type = answers["pixel-image"];
+    console.log("User entered shape = [" + user_shape_type + "]");
 
-  let user_shape;
-  if (user_shape_type === "Circle" || user_shape_type === "circle"){
+    let user_shape;
+    if (user_shape_type === "Circle" || user_shape_type === "circle") {
       user_shape = new Circle();
       console.log("You picked the Circle shape");
-  }
-  else if (user_shape_type === "Triangle" || user_shape_type === "triangle"){
-    user_shape = new Triangle();
-    console.log("You picked the Triangle shape");
-  }
-  else if (user_shape_type === "Square" || user_shape_type === "square"){
-    user_shape = new Triangle();
-    console.log("You picked the Square shape");
-  }
-  else {
-    console.log("That's not a shape!");
-  }
-  user_shape.setColor(user_shape_color);
+    } else if (user_shape_type === "Triangle" || user_shape_type === "triangle") {
+      user_shape = new Triangle();
+      console.log("You picked the Triangle shape");
+    } else if (user_shape_type === "Square" || user_shape_type === "square") {
+      user_shape = new Triangle();
+      console.log("You picked the Square shape");
+    } else {
+      console.log("That's not a shape!");
+    }
+    user_shape.setColor(user_shape_color);
 
   // need function to add new shape and text to the shape
+    var svg = new Svg();
+    svg.setTextElement(user_text, user_font_color);
+    svg.setShapeElement(user_shape);
+    svgString = svg.render();
+    
+
 init();
