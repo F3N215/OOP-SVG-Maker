@@ -1,7 +1,6 @@
 // import inquirer, graceful and shape modules
-// const inquirer = require("inquirer");
-// const filesystem = require("graceful-fs");
-import { writeFile } from "graceful-fs";
+// import { writeFile } from "graceful-fs";
+import gracefulFs from "graceful-fs";
 import inquirer from "inquirer";
 const fs = require("fs");
 const { Circle, Triangle, Square } = await import("./lib/shapes");
@@ -48,14 +47,15 @@ const questions = [
     type: "list",
     name: "pixel-image",
     message: "Choose which pixel image you would like?",
-    choices: ["Circle", "Square", "Triangle"],
+    choices: ["Circle", "Triangle", "Square"],
   },
 ];
 
 // write data to file
 function writeToFile(fileName, data) {
   console.log("Writing [" + data + "] to file [" + fileName + "]");
-  writeFile(fileName, data, function (err) {
+  gracefulFs.writeFile(fileName, data, function (err) {
+    // Change this line
     if (err) {
       return console.log(err);
     }
@@ -79,13 +79,13 @@ async function init() {
   }
   console.log("User input text: [" + user_text + "]");
 
-  user_font_color = answers["text-color"];
+  let user_font_color = answers["text-color"];
   console.log("User font color: [" + user_font_color + "]");
 
-  user_shape_color = answers.shape;
+  let user_shape_color = answers.shape;
   console.log("Shape color: [" + user_shape_color + "]");
 
-  user_shape_type = answers["pixel-image"];
+  let user_shape_type = answers["pixel-image"];
   console.log("User entered shape = [" + user_shape_type + "]");
 
   let user_shape;
@@ -96,10 +96,12 @@ async function init() {
     user_shape = new Triangle();
     console.log("You picked the Triangle shape");
   } else if (user_shape_type === "Square" || user_shape_type === "square") {
-    user_shape = new Triangle();
+    user_shape = new Square();
     console.log("You picked the Square shape");
   } else {
-    console.log("That's not a shape!");
+    console.log(
+      "That's not a shape! Please choose Circle, Triangle, or Square."
+    );
   }
   user_shape.setColor(user_shape_color);
 
@@ -112,6 +114,6 @@ async function init() {
   console.log("Displaying shape:\n\n" + svgString);
   console.log("You made a shape!!");
   console.log("Writing to file, please hold ...");
-  writeToFile(svg_file, svgString);
+  writeToFile(fileName, svgString);
 }
 init();
