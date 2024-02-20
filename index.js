@@ -1,9 +1,12 @@
 // import inquirer, graceful and shape modules
+
 // import { writeFile } from "graceful-fs";
-const inquirer = import("inquirer");
-const gracefulFs = import("graceful-fs");
-const fs = require("fs");
-const { Circle, Triangle, Square } = require("./lib/shapes.js");
+// const gracefulFs = import("graceful-fs");
+import inquirer from "inquirer";
+const { prompt } = inquirer;
+import fs from "graceful-fs";
+const { writeFile } = fs;
+import { Circle, Triangle, Square } from "./lib/shapes.js";
 
 class Svg {
   constructor() {
@@ -46,7 +49,7 @@ const questions = [
   {
     type: "list",
     name: "pixel-image",
-    message: "Choose which pixel image you would like1",
+    message: "Choose which pixel image you would like:",
     choices: ["Circle", "Triangle", "Square"],
   },
 ];
@@ -54,7 +57,7 @@ const questions = [
 // write data to file
 function writeToFile(fileName, data) {
   console.log("Writing [" + data + "] to file [" + fileName + "]");
-  gracefulFs.writeFile(fileName, data, function (err) {
+  writeFile(fileName, data, function (err) {
     if (err) {
       return console.log(err);
     }
@@ -67,7 +70,7 @@ async function init() {
   var svgString = "";
   var fileName = "logo.svg";
 
-  const answers = await inquirer.prompt(questions); // prompt user for answers
+  const answers = await prompt(questions); // prompt user for answers
 
   var user_text = "";
   if (answers.text.length > 0 && answers.text.length < 4) {

@@ -1,10 +1,9 @@
 {
   "name": "10-oop-challenge",
   "version": "1.0.0",
-  "description": "## Your Task",
+  "description": "",
   "main": "index.js",
   "directories": {
-    "example": "examples",
     "lib": "lib"
   },
   "type": "module",
