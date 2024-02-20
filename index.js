@@ -1,14 +1,13 @@
 // import inquirer, graceful and shape modules
 // import { writeFile } from "graceful-fs";
-const inquirer = require("inquirer");
-const gracefulFs = require("graceful-fs");
+const inquirer = import("inquirer");
+const gracefulFs = import("graceful-fs");
 const fs = require("fs");
-const { Circle, Triangle, Square } = require("./lib/shapes");
+const { Circle, Triangle, Square } = require("./lib/shapes.js");
 
 class Svg {
   constructor() {
     this.textElement = "";
-    node;
     this.shapeElement = "";
   }
   render() {
@@ -79,7 +78,7 @@ async function init() {
   }
   console.log("User input text: [" + user_text + "]");
 
-  user_font_color = answers["text-color"];
+  let user_font_color = answers["text-color"];
   console.log("User font color: [" + user_font_color + "]");
 
   let user_shape_color = answers.shape;
