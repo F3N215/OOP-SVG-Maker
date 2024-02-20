@@ -7,7 +7,7 @@
     "example": "examples",
     "lib": "lib"
   },
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "start": "node index.js",
     "test": "jest"
@@ -17,7 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "graceful-fs": "^4.2.11",
-    "inquirer": "^9.2.14"
+    "inquirer": "^9.2.15"
   },
   "devDependencies": {
     "jest": "^29.7.0"

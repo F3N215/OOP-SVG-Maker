@@ -1,10 +1,8 @@
 // import inquirer, graceful and shape modules
 // import { writeFile } from "graceful-fs";
-import gracefulFs from "graceful-fs";
-import inquirer from "inquirer";
-const fs = require("fs");
-const { Circle, Triangle, Square } = await import("./lib/shapes");
-
+const fs = require("graceul-fs");
+const inquirer = require("inquirer");
+const { Circle, Triangle, Square } = require("./lib/shapes");
 class Svg {
   constructor() {
     this.textElement = "";
@@ -46,7 +44,7 @@ const questions = [
   {
     type: "list",
     name: "pixel-image",
-    message: "Choose which pixel image you would like?",
+    message: "Choose which pixel image you would like1",
     choices: ["Circle", "Triangle", "Square"],
   },
 ];
@@ -55,7 +53,6 @@ const questions = [
 function writeToFile(fileName, data) {
   console.log("Writing [" + data + "] to file [" + fileName + "]");
   gracefulFs.writeFile(fileName, data, function (err) {
-    // Change this line
     if (err) {
       return console.log(err);
     }
@@ -79,7 +76,7 @@ async function init() {
   }
   console.log("User input text: [" + user_text + "]");
 
-  let user_font_color = answers["text-color"];
+  user_font_color = answers["text-color"];
   console.log("User font color: [" + user_font_color + "]");
 
   let user_shape_color = answers.shape;
