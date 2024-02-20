@@ -1,11 +1,14 @@
 // import inquirer, graceful and shape modules
 // import { writeFile } from "graceful-fs";
-const fs = require("graceul-fs");
 const inquirer = require("inquirer");
+const gracefulFs = require("graceful-fs");
+const fs = require("fs");
 const { Circle, Triangle, Square } = require("./lib/shapes");
+
 class Svg {
   constructor() {
     this.textElement = "";
+    node;
     this.shapeElement = "";
   }
   render() {
